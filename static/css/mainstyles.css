@@ -188,6 +188,7 @@ p{
 	width: 100%;
 }
 #Slider .img{
+    padding-top: -30%;
     overflow: hidden;
     height: 560px;
 }
