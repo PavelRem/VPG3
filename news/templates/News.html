@@ -10,7 +10,8 @@
                 <div class="text" id ="text">
                    <style>
                        .text p > img, .text p > iframe{
-                            max-width: 722px !important;
+                            width: 100%;
+                            height: auto;
                         }
                     </style>
                     <p> {% autoescape off %} {{ news_detail.text }} {% endautoescape %}</p>
