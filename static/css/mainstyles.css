@@ -711,6 +711,9 @@ p{
     }
 }
 @media screen and (max-width: 767px){
+    #Slider .img{
+        height: 390px;
+    }
     .contacts div{
         margin-right: 10px;
         margin-left: 10px;
@@ -784,7 +787,7 @@ p{
         padding-left: 25px;
         font-size: 23px;
     }
-    .news img{
+    .news .img{
         width: 45%;
     }
     .content{
