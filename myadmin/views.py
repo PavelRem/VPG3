@@ -427,8 +427,6 @@ def user_update(request, id):
 
 @login_required(login_url='/admin/login/')
 def user_add_save(request):
-    if request.POST.get('password', '') != request.POST.get('password_check', ''):
-        return render(request, 'user_add.html', {'nomatch': 1})
     user = User.objects.create_user(
         username=request.POST.get('name', ''),
         email=request.POST.get('email', ''),
@@ -439,7 +437,13 @@ def user_add_save(request):
 
 @login_required(login_url='/admin/login/')
 def user_update_save(request, id):
-    if request.POST.get('password', '') != request.POST.get('password_check', ''):
+    usr_check = User.objects.get(pk=id)
+    user_tmp = User.objects.create_user(
+        username=request.POST.get('name', ''),
+        email=request.POST.get('email', ''),
+        password=request.POST.get('password', '')
+    )
+    if usr_check.password =! user_tmp.password:
         return render(request, 'user_add.html',  {'prtcl_user': User.objects.get(pk=id), 'nomatch': 1})
     user = User.objects.get(pk=id)
     user.is_superuser = True

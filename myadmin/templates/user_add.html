@@ -24,11 +24,9 @@
 </style>
 <div class="container">
    <div class="inner-content admin">
-       {% if nomatch %}
-         <div id ="file-error" class="text-center">"Неправильный пароль"</div>
-       {% endif %}
-
-
+     {% if nomatch %}
+      <div id ="file-error" class="text-center">"Неправильный пароль"</div>
+     {% endif %}
    {% if prtcl_user %}
    <form id ="chenge-admin" enctype="multipart/form-data" action="{% url 'myadmin:user_update_save' prtcl_user.pk %}" method="post">
         {% csrf_token %}
@@ -49,10 +47,42 @@
          <input type="password" class="form-control" required name="password" id="password" value="">
          <label for="#password">Пароль еще раз</label>
          <input type="password" class="form-control" required name="password_check" id="password_check" value="">
+         <div id ="file-error"></div>
          <button type="submit" id="ok-btn" class="btn btn-default"> Добавить </button>
      </form>
     {% endif %}
     </div>
 </div>
 
+<script>
+//    ПРОВЕРКА СТАРОГО ПАРОЛЯ
+$('#chenge-admin #password').blur(function (e) {
+        if($('#password').val()!=""){
+            if($('#password').val() == /*СЮДА ПАРОЛЬ*/){
+                $('#ok-btn').css("display", "inline-block");
+                $('#file-error').text("");
+            }
+            else{
+                $('#ok-btn').css("display", "none");
+                $('#file-error').text("Неправильный пароль");
+            }
+        }
+});
+
+
+
+$('#add-admin #password_check').blur(function (e) {
+        if($('#password').val()!=""){
+            if($('#password').val() == $('#password_check').val()){
+                $('#ok-btn').css("display", "inline-block");
+                $('#file-error').text("");
+            }
+            else{
+                $('#ok-btn').css("display", "none");
+                $('#file-error').text("Пароли не совпадают");
+            }
+        }
+});
+
+</script>
   {% endblock %}
