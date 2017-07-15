@@ -18,7 +18,7 @@ import json
 
 
 def upload(request):
-    if request.POST.get('file', ''):
+    if request.FILES.get('file', ''):
         return true
     else:
         return true

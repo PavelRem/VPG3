@@ -101,10 +101,7 @@
 
       $.ajax({url: '/admin/upload/',
               type: "POST",
-              data: {
-                 fiel: file,
-                 csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value)
-               },
+              data: fd,
               processData: false,
               contentType: false,
               success: function (data) {
