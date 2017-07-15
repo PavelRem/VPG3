@@ -681,6 +681,12 @@ p{
     #Slider .carousel-caption h2, .carousel-caption p{
         width: 100%;
     }
+    .carousel-caption p{
+        font-size: 12px;
+    }
+    .carousel-caption h2{
+        font-size: 20px;
+    }
     .footer .center{
         margin-left: 70px;
     }
@@ -793,22 +799,12 @@ p{
     .content{
         padding-left: 0px;
     }
-    .carousel-caption p{
-        font-size: 12px;
-    }
-    .carousel-caption h2{
-        font-size: 20px;
-    }
     p{
         font-size: 15px;
     }
 }
 @media screen and (max-width: 700px){
-    #Slider .item img{
-	    width: 100%;
-        height: 380px !important;
-    }
-    #Slider .carousel-inner{
+    #Slider .img{
         height: 380px;
     }
     #donate{
