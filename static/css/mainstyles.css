@@ -620,6 +620,9 @@ p{
     .footer .center{
         margin-left: 175px;
     }
+    #Slider .img{
+        height: 540px;
+    }
 }
 @media screen and (max-width: 991px){
     .admin table{
