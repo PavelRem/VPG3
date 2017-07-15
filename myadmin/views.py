@@ -443,7 +443,7 @@ def user_update_save(request, id):
         email=request.POST.get('email', ''),
         password=request.POST.get('password', '')
     )
-    if usr_check.password =! user_tmp.password:
+    if usr_check.password != user_tmp.password:
         return render(request, 'user_add.html',  {'prtcl_user': User.objects.get(pk=id), 'nomatch': 1})
     user = User.objects.get(pk=id)
     user.is_superuser = True
