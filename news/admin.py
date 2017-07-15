@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import MyModel
+from .models import MyModel
 from mce_filebrowser.admin import MCEFilebrowserAdmin
 from .models import NewsData, Activity, Reference, Team, Partners, Contacts
 
