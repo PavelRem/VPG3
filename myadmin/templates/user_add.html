@@ -24,7 +24,9 @@
 </style>
 <div class="container">
    <div class="inner-content admin">
-
+   {% if nomatch  %}
+    <div id ="file-error" class="text-center"> Wrong old passowrd</div>
+   {% endif%}
    {% if prtcl_user %}
    <form id ="chenge-admin" enctype="multipart/form-data" action="{% url 'myadmin:user_update_save' prtcl_user.pk %}" method="post">
         {% csrf_token %}
@@ -32,7 +34,6 @@
         <input type="text" class="form-control" required name="name" id="name-inp" value="{{ prtcl_user.username }}">
         <label for="#password">Старый пароль</label>
         <input type="password" class="form-control" required name="password" id="password" value="">
-        <div id ="file-error"></div>
         <label for="#password">Новый пароль</label>
         <input type="password" class="form-control" required name="password_check" id="password_check" value="">
         <button type="submit" id="ok-btn" class="btn btn-default"> Изменить </button>
@@ -54,31 +55,6 @@
 </div>
 
 <script>
-//    ПРОВЕРКА СТАРОГО ПАРОЛЯ
-$('#chenge-admin #password').blur(function (e) {
-  $.ajax({url: '/admin/check_user_pass/',
-          type: "POST",
-          data: {
-            csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
-            username: $("#name-inp").val(),
-            password: $("#password").val(),
-          },
-          success: function (data) {
-              if (data == "ok"){
-                $('#ok-btn').css("display", "inline-block");
-                $('#file-error').text("");
-              } else {
-                $('#ok-btn').css("display", "none");
-                $('#file-error').text("Неправильный пароль");
-              }
-          },
-          error: function (data){
-            $('#ok-btn').css("display", "none");
-            $('#file-error').text("Неправильный пароль или логин");
-          }
-        })
-});
-
 
 $('#add-admin #password_check').blur(function (e) {
         if($('#password').val()!=""){
