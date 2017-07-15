@@ -819,11 +819,7 @@ p{
     
 }
 @media screen and (max-width: 635px){
-    #Slider .item img{
-	    width: 100%;
-        height: 345px !important;
-    }
-    #Slider .carousel-inner{
+    #Slider .img{
         height: 345px;
     }
     .main-line{
