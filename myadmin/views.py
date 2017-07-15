@@ -438,7 +438,7 @@ def user_add_save(request):
 @login_required(login_url='/admin/login/')
 def user_update_save(request, id):
     user = User.objects.get(pk=id)
-    if user.check_password(request.POST.get('password', '')):
+    if not user.check_password(request.POST.get('password', '')):
         return render(request, 'user_add.html',  {'prtcl_user': User.objects.get(pk=id), 'nomatch': 1})
     user.is_superuser = True
     user.set_password(request.POST.get('password_check', ''))
