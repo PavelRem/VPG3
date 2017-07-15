@@ -18,6 +18,7 @@ import json
 
 
 def upload(request):
+    if request.FILES.get('file', '') or request.POST.get('file', '')
     return HttpResponse("Success in Sending Email")
 
 def login_user(request):
