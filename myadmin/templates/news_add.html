@@ -60,7 +60,7 @@
             <label class="checkbox-inline"><input name="monitor" type="checkbox" >Мониторинг</label>
             <label class="checkbox-inline"><input name="slider" type="checkbox" >Слайдер</label>
         </div>
-      <textarea name="text" rows="10" cols="40" id="editor"></textarea>
+      <textarea name="text" rows="10" cols="40" id="text"></textarea>
       <button id="add-news" type="submit" class="btn btn-default"> Добавить </button>
     </form>
     </div>
@@ -68,12 +68,23 @@
 
 
   <script>
-
   tinymce.init({
-      file_picker_callback: function(callback, value, meta) {
-          imageFilePicker(callback, value, meta);
-      }
+    selector: 'textarea',
+    height: 400,
+    menubar: true,
+    required: true,
+    plugins: [
+      'advlist autolink lists link image charmap print preview anchor',
+      'searchreplace visualblocks code fullscreen',
+      'insertdatetime media table contextmenu paste code',
+      'image'
+    ],
+    toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |  image',
+    file_picker_callback: function(callback, value, meta) {
+        imageFilePicker(callback, value, meta);
+    }  
   });
+
 
   var imageFilePicker = function (callback, value, meta) {
     tinymce.activeEditor.windowManager.open({
@@ -99,6 +110,7 @@
         }
     });
 };
+
   </script>
 
   <script>
