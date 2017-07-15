@@ -39,7 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tinymce',
+    'sorl.thumbnail',
+    'mce_filebrowser',
 ]
+
+TINYMCE_DEFAULT_CONFIG = {
+    'file_browser_callback': 'mce_filebrowser'
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
