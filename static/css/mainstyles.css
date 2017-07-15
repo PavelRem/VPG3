@@ -898,7 +898,7 @@ p{
     #Slider .img{
         height: 290px;
     }
-    .news .img{
+    .news img{
         height: 260px;
     }
     .logo-text{
@@ -939,11 +939,7 @@ p{
     .footer .contacts{
         font-size: 11px;
     }
-    #Slider .item img{
-	    width: 100%;
-        height: 260px !important;
-    }
-    #Slider .carousel-inner{
+    #Slider .img{
         height: 260px;
     }
     .news img{
@@ -969,14 +965,10 @@ p{
         width: 200px;
         margin-top: 17px;
     }
-     #Slider .item img{
-	    width: 100%;
-        height: 220px !important;
-    }
-    #Slider .carousel-inner{
+     #Slider .img{
         height: 220px;
     }
-     .news img{
+    .news img{
         height: 200px;
     }
     .carousel-caption p{
