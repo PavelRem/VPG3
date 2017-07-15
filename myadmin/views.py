@@ -18,8 +18,12 @@ import json
 
 
 def upload(request):
-    if request.POST.get('file', ''):
-        return HttpResponse("Success in Sending Email")
+    if request.FILES.get('file', ''):
+        obj = Images.objects.create()
+        obj.img = request.FILES.get('file', '')
+        obj.save()
+        compres_img("/home/shostatscky.andriy/myproject/media/news/"+request.FILES['file'].name)
+        return HttpResponse(obj.img_url)
     else:
         return HttpResponse("Error in Sending Email")
 

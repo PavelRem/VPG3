@@ -94,7 +94,7 @@
 
     input.onchange = function() {
       var file = this.files[0];
-
+      var img_url;
       var fd = new FormData();
       fd.append("file", file);
       fd.append("csrfmiddlewaretoken", document.getElementsByName('csrfmiddlewaretoken')[0].value);
@@ -108,6 +108,8 @@
               success: function (data) {
                   console.log("siucccess");
                   console.log(data)
+                  img_url = data;
+                  $("#mceu_24-inp").val(img_url)
               },
               error: function (data){
                 console.log("error");
@@ -129,6 +131,7 @@
 
         // call the callback and populate the Title field with the file name
         cb(blobInfo.blobUri(), { title: file.name });
+        $("#mceu_24-inp").val(img_url)
       };
     };
 
