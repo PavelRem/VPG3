@@ -19,7 +19,9 @@ import json
 
 def upload(request):
     if request.FILES.get('file', '') or request.POST.get('file', '')
-    return HttpResponse("Success in Sending Email")
+        return HttpResponse("Success in Sending Email")
+    else:
+        return HttpResponse("Error in Sending Email")
 
 def login_user(request):
     logout(request)
