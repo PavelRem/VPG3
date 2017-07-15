@@ -107,7 +107,7 @@
                   console.log("siucccess");
                   console.log(data)
                   img_url = data;
-                  $("inp").val(img_url)
+                  $("mceu_33-inp").val(img_url)
               },
               error: function (data){
                 console.log("error");
@@ -129,7 +129,7 @@
 
         // call the callback and populate the Title field with the file name
         cb(blobInfo.blobUri(), { title: file.name });
-        $("#inp").val(img_url)
+        $("#mceu_33-inp").val(img_url)
       };
     };
 
