@@ -25,7 +25,7 @@
 <div class="container">
    <div class="inner-content admin">
    {% if nomatch  %}
-    <div id ="file-error" class="text-center"> Wrong old passowrd</div>
+    <div id ="file-error" class="text-center">Не правельный логин или пароль</div>
    {% endif%}
    {% if prtcl_user %}
    <form id ="chenge-admin" enctype="multipart/form-data" action="{% url 'myadmin:user_update_save' prtcl_user.pk %}" method="post">
