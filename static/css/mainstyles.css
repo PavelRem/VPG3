@@ -624,7 +624,10 @@ p{
         height: 540px;
     }
     .news-text{
-        height: 180px;
+        height: 170px;
+    }
+    .news .img{
+        height: 170px;
     }
 }
 @media screen and (max-width: 991px){
