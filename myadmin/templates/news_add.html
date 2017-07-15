@@ -68,6 +68,8 @@
 
 
   <script>
+
+
   tinymce.init({
   selector: '#editor',
   plugins: 'image code',
@@ -84,6 +86,7 @@
   file_picker_callback: function(cb, value, meta) {
     var input = document.createElement('input');
     input.setAttribute('type', 'file');
+    input.setAttribute('name', 'img');
     input.setAttribute('accept', 'image/*');
 
     // Note: In modern browsers input[type="file"] is functional without
@@ -97,7 +100,19 @@
 
       var reader = new FileReader();
       reader.readAsDataURL(file);
-      console.log(  input)
+      $.ajax({url: 'admin/upload',
+              type: "POST",
+              data: {
+                csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+                img: file,
+              },
+              success: function (data) {
+                  console.log("succcess");
+              },
+              error: function (data){
+                console.log("error")
+              }
+      })
       reader.onload = function () {
         // Note: Now we need to register the blob in TinyMCEs image blob
         // registry. In the next release this part hopefully won't be

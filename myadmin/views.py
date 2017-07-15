@@ -18,11 +18,10 @@ import json
 
 
 def upload(request):
-    response_data = {
-        'location' : '/uploaded/image/path/image.png'
-    }
-
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
+    if request.POST.get('img', ''):
+        return true
+    else:
+        return false
 
 def login_user(request):
     logout(request)
