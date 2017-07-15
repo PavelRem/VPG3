@@ -21,7 +21,7 @@ def upload(request):
     if request.POST.get('file', ''):
         return true
     else:
-        return false
+        return true
 
 def login_user(request):
     logout(request)
