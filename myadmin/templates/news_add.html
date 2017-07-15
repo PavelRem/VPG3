@@ -80,15 +80,8 @@
       'image'
     ],
     toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |  image',
-    menubar: "insert",
-    image_list: [
-
-     {% for image in images %}
-
-     {title: '{{ image.img_url }}', value: '{{ image.img_url }}'},
-
-     {% endfor%}
-   ]
+    images_upload_url: 'admin/upload_image',
+    automatic_uploads: false
   });
 
   </script>
