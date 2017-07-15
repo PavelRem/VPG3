@@ -186,10 +186,11 @@ p{
 /*======================================*/
 #Slider .item img{
 	width: 100%;
-    height: 560px !important;
 }
+
 #Slider .carousel-inner{
     height: 560px;
+    overflow: hidden;
 }
 #Slider .carousel-indicators{
     bottom: 0px;
