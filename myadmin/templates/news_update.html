@@ -62,9 +62,14 @@
    tinymce.init({
     selector: 'textarea',
     height: 400,
-
+    menubar: false,
+   plugins: [
+  'advlist autolink lists link image charmap print preview anchor',
+  'searchreplace visualblocks code fullscreen',
+  'insertdatetime media table contextmenu paste code',
+ 'image code'
     ],
-    toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |  link image '
+    toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
   // enable title field in the Image dialog
   image_title: true,
   // enable automatic uploads of images represented by blob or data URIs
