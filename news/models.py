@@ -8,8 +8,6 @@ class NewsData(models.Model):
     activity = models.BooleanField(default=False)
     monitoring = models.BooleanField(default=False)
     slider = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     @property
     def img_url(self):
