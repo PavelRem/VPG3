@@ -32,9 +32,11 @@
         <input type="text" class="form-control" required name="name" id="name-inp" value="{{ prtcl_user.username }}">
         <label for="#password">Старый пароль</label>
         <input type="password" class="form-control" required name="password" id="password" value="">
-        <div id ="file-error"></div>
         <label for="#password">Новый пароль</label>
         <input type="password" class="form-control" required name="password_check" id="password_check" value="">
+        {% nomatch %}
+         <div id ="file-error">"Неправильный пароль"</div>
+        {% endif %}
         <button type="submit" id="ok-btn" class="btn btn-default"> Изменить </button>
     </form>
     {% else %}
@@ -46,42 +48,13 @@
          <input type="password" class="form-control" required name="password" id="password" value="">
          <label for="#password">Пароль еще раз</label>
          <input type="password" class="form-control" required name="password_check" id="password_check" value="">
-         <div id ="file-error"></div>
+         {% nomatch %}
+          <div id ="file-error">"Неправильный пароль"</div>
+         {% endif %}
          <button type="submit" id="ok-btn" class="btn btn-default"> Добавить </button>
      </form>
     {% endif %}
     </div>
 </div>
 
-<script>
-//    ПРОВЕРКА СТАРОГО ПАРОЛЯ
-$('#chenge-admin #password').blur(function (e) {
-        if($('#password').val()!=""){
-            if($('#password').val() == /*СЮДА ПАРОЛЬ*/){
-                $('#ok-btn').css("display", "inline-block");
-                $('#file-error').text("");
-            }
-            else{
-                $('#ok-btn').css("display", "none");
-                $('#file-error').text("Неправильный пароль");
-            }
-        }
-});
-
-    
-    
-$('#add-admin #password_check').blur(function (e) {
-        if($('#password').val()!=""){
-            if($('#password').val() == $('#password_check').val()){
-                $('#ok-btn').css("display", "inline-block");
-                $('#file-error').text("");
-            }
-            else{
-                $('#ok-btn').css("display", "none");
-                $('#file-error').text("Пароли не совпадают");
-            }
-        }
-});
-    
-</script>
   {% endblock %}
