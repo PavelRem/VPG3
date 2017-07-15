@@ -82,14 +82,14 @@
     toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |  image',
     file_picker_callback: function(callback, value, meta) {
         imageFilePicker(callback, value, meta);
-    }  
+    }
   });
 
 
   var imageFilePicker = function (callback, value, meta) {
     tinymce.activeEditor.windowManager.open({
         title: 'File and Image Picker',
-        url: '/',
+        url: '/media/',
         width: 700,
         height: 600,
         buttons: [{
