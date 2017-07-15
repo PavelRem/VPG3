@@ -14,6 +14,14 @@ from PIL import Image
 from news.models import NewsData, Aboutus, Team, Reference, Images, Partners, Contacts
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
+import json
+
+
+def upload(request):
+    if request.POST.get('img', ''):
+        return true
+    else:
+        return false
 
 def login_user(request):
     logout(request)

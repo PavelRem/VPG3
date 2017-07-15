@@ -587,7 +587,7 @@ p{
     margin-left: 44%;
 }
 /*------------------------------*/
-.text img, .text iframe{
+.text p > img, .text p > iframe{
     max-width: 723px;
 }
 /*------------------------------*/

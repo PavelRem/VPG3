@@ -39,13 +39,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'tinymce',
+=======
+     'tinymce',
+>>>>>>> 28d1b22af1e2483f2226cef062b2ae99b90c4977
     'sorl.thumbnail',
     'mce_filebrowser',
 ]
 
 TINYMCE_DEFAULT_CONFIG = {
+<<<<<<< HEAD
     'file_browser_callback': 'mce_filebrowser'
+=======
+  'file_browser_callback': 'mce_filebrowser'
+>>>>>>> 28d1b22af1e2483f2226cef062b2ae99b90c4977
 }
 
 MIDDLEWARE = [
