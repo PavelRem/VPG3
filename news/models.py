@@ -1,8 +1,4 @@
 from django.db import models
-from tinymce.models import HTMLField
-
-class MyModel(models.Model):
-    content = HTMLField()
 
 class NewsData(models.Model):
     title = models.CharField(max_length=300)
