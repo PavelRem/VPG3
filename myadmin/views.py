@@ -17,7 +17,7 @@ from django.conf import settings
 import json
 
 
-def upload(reques):
+def upload(request):
     response_data = {
         'location' : '/uploaded/image/path/image.png'
     }
