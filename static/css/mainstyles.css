@@ -587,6 +587,10 @@ p{
     margin-left: 44%;
 }
 /*------------------------------*/
+.text img, .text iframe{
+    max-width: 723px;
+}
+/*------------------------------*/
 @media screen and (max-width: 1200px){
     .headline{
         font-size: 12px;
