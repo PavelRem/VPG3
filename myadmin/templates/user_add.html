@@ -34,7 +34,7 @@
         <input type="password" class="form-control" required name="password" id="password" value="">
         <label for="#password">Новый пароль</label>
         <input type="password" class="form-control" required name="password_check" id="password_check" value="">
-        {% nomatch %}
+        {% if nomatch %}
          <div id ="file-error">"Неправильный пароль"</div>
         {% endif %}
         <button type="submit" id="ok-btn" class="btn btn-default"> Изменить </button>
@@ -48,7 +48,7 @@
          <input type="password" class="form-control" required name="password" id="password" value="">
          <label for="#password">Пароль еще раз</label>
          <input type="password" class="form-control" required name="password_check" id="password_check" value="">
-         {% nomatch %}
+         {% if nomatch %}
           <div id ="file-error">"Неправильный пароль"</div>
          {% endif %}
          <button type="submit" id="ok-btn" class="btn btn-default"> Добавить </button>
