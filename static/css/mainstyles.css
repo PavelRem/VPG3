@@ -666,6 +666,9 @@ p{
         height: 210px;
         margin-right: 20px;
     }
+    .news img{
+        height: 210px;
+    }
     #donate{
         width: 50%;
     }
