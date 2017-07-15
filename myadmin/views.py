@@ -435,16 +435,16 @@ def user_add_save(request):
     user.save()
     return redirect('/admin/users')
 
+def check_user_pass(request):
+    user = User.objects.get(username=request.POST.get('username', ''))
+    if not user:
+        return HttpResponse("failer")
+    if user.password != request.POST.get('password', ''):
+        return HttpResponse("failer")
+    return HttpResponse("ok")
+
 @login_required(login_url='/admin/login/')
 def user_update_save(request, id):
-    usr_check = User.objects.get(pk=id)
-    user_tmp = User.objects.create_user(
-        username=request.POST.get('name', ''),
-        email=request.POST.get('email', ''),
-        password=request.POST.get('password', '')
-    )
-    if usr_check.password != user_tmp.password:
-        return render(request, 'user_add.html',  {'prtcl_user': User.objects.get(pk=id), 'nomatch': 1})
     user = User.objects.get(pk=id)
     user.is_superuser = True
     user.set_password(request.POST.get('password_check', ''))

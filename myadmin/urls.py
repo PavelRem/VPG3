@@ -7,7 +7,8 @@ app_name = 'myadmin'
 urlpatterns = [
     #url(r'^activity/$', views.activity, name='activity'),
 #    url(r'^/change_aboutus/', views.change_team, name='change_team')
-    
+
+    url(r'^/check_user_pass/$', views.check_user_pass, name='check_user_pass'),
     url(r'^/login/$', views.login_user, name='login_user'),
     url(r'^/upload/$', views.upload, name='upload'),
     url(r'^/logout/$', views.logout_user, name='logout_user'),
