@@ -24,6 +24,10 @@
 </style>
 <div class="container">
    <div class="inner-content admin">
+       {% if nomatch %}
+         <div id ="file-error" class="text-center">"Неправильный пароль"</div>
+       {% endif %}
+
 
    {% if prtcl_user %}
    <form id ="chenge-admin" enctype="multipart/form-data" action="{% url 'myadmin:user_update_save' prtcl_user.pk %}" method="post">
@@ -34,9 +38,6 @@
         <input type="password" class="form-control" required name="password" id="password" value="">
         <label for="#password">Новый пароль</label>
         <input type="password" class="form-control" required name="password_check" id="password_check" value="">
-        {% if nomatch %}
-         <div id ="file-error">"Неправильный пароль"</div>
-        {% endif %}
         <button type="submit" id="ok-btn" class="btn btn-default"> Изменить </button>
     </form>
     {% else %}
@@ -48,9 +49,6 @@
          <input type="password" class="form-control" required name="password" id="password" value="">
          <label for="#password">Пароль еще раз</label>
          <input type="password" class="form-control" required name="password_check" id="password_check" value="">
-         {% if nomatch %}
-          <div id ="file-error">"Неправильный пароль"</div>
-         {% endif %}
          <button type="submit" id="ok-btn" class="btn btn-default"> Добавить </button>
      </form>
     {% endif %}
