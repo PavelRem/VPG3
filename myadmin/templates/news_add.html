@@ -97,7 +97,7 @@
 
       var fd = new FormData();
       fd.append("file", file);
-      fd.append("csrfmiddlewaretoken", document.getElementsByName('csrfmiddlewaretoken')[0].value);
+      fd.append("csrftoken", document.getElementsByName('csrfmiddlewaretoken')[0].value);
 
       $.ajax({url: '/admin/upload/',
               type: "POST",
