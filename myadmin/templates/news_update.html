@@ -40,6 +40,7 @@
   <form enctype="multipart/form-data" action="{% url 'myadmin:news_update_save' news.pk %}" method="post">
     {% csrf_token %}
         <img src="{{news.img_url}}">
+        <label for="#photo">Превью</label>
         <input type="file" id="photo" name="photo" multiple />
         <div id="file-error"></div>
         <label for="#date-inp">Дата</label>
@@ -137,6 +138,7 @@
 });
 
   </script>
+
 
   <script>
 $("#photo").change(function() {
