@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block body %}
+
+    {% if team %}
+<div class="row">
+        <h2 class="content-title">Наша команда</h2>
+
+           {% for member in team %}
+             <div class="x">
+              <div class="col-md-12 member shadow">
+                  <a href="{{ member.fb }}" class="content-title" target="_blank">
+                      <img src="{% static '/images/facebook.png' %}" id="fb-img">
+                      <h3>{{ member.name }}</h3>
+                  </a>
+                  <img src="{{ member.photo_url }}" alt="{{ member.name }}">
+                  <p>{% autoescape off %} {{ member.descrip }} {% endautoescape %}</p>
+              </div>
+</div>
+             {% endfor %}
+</div>
+
+    {% endif %}
+
+{% endblock %}
+
+
+

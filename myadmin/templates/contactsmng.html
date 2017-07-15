@@ -1,0 +1,55 @@
+{% extends 'navbar.html' %}
+{% load staticfiles %}
+
+{% block body %}
+
+<style>
+    #about-btn{
+        margin-top: 20px;
+        width: 200px;
+        height: 50px;
+        padding-top: 10px;
+        font-size: 17px;
+        float: right;
+    }
+    .inner-content{
+        overflow: hidden;
+        padding: 20px;
+    }
+    #email, #tel{
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container">
+   <div class="inner-content admin">
+        <form enctype="multipart/form-data" action="{% url 'myadmin:change_contacts' %}" method="post" id="newsdata_form" class = "m-input">
+            {% csrf_token %}
+            <label for="#email">Эл. адрес</label>
+            <input type="email" class="form-control"  required name="email" id="email" value="{{ info.email }}">
+            <label for="#tel">Телефон</label>
+            <input type="text" class="form-control"  required name="tel" id="tel" value="{{ info.number }}">
+            <label for="#tel">Фейсбук</label>
+            <input type="text" class="form-control" required name="address" id="address" value="{{ info.address }}">
+            <button type="submit" id="about-btn" class="btn btn-default" onclick="get_editor_content()">{% if info %} Изменить {% else %} Добавить {% endif%}
+            </button>
+        </form>
+    </div>
+ </div>
+  <script>
+  tinymce.init({
+    selector: 'textarea',
+    height: 400,
+    menubar: true,
+    plugins: [
+      'advlist autolink lists link image charmap print preview anchor',
+      'searchreplace visualblocks code fullscreen',
+      'insertdatetime media table contextmenu paste code'
+    ],
+    toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    content_css: [
+      ]
+  });
+  </script>
+
+  {% endblock %}

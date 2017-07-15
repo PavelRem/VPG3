@@ -1,0 +1,117 @@
+{% extends 'navbar.html' %}
+{% load staticfiles %}
+
+{% block body %}
+<style>
+    #add-ref{
+        margin-top: 20px;
+        width: 200px;
+        height: 50px;
+        padding-top: 12px;
+        font-size: 17px;
+    }
+    h3{
+        padding-bottom: 5px;
+        border-bottom: 1px solid red;
+        margin-bottom: 20px;
+    }
+    .table-hover tbody tr:hover td {
+        background-color: #eaeaea;
+    }
+    table input{
+        height: 20px;
+        width: 20px;
+    }
+    .inner-content{
+        overflow: hidden;
+        padding: 20px;
+    }
+</style>
+<div class="container">
+   <div class="inner-content admin">
+     <a id = "add-ref" href="{% url 'myadmin:reference_add' %}" type="submit" class="btn btn-default">Добавить cсылку</a>
+
+
+    <h3>Список cсылок</h3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Дата</th>
+            <th>Заголовок</th>
+            <th>Источник</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if references %}
+              {% for ref in references %}
+            <tr>
+                <td>{{ ref.pub_date | date:"d/m/Y"}}</td>
+                <td>{{ ref.title }}</td>
+                <td>{{ ref.source }}</td>
+                <td><a href="{% url 'myadmin:reference_update' ref.pk %}" type="submit" class="btn btn-default">Изменить</a></td>
+                <td><a type="submit" class="btn btn-default" data-toggle="modal" data-target="#Confirm{{ ref.pk }}">Удалить</a></td>
+            </tr>
+            <div id="Confirm{{ ref.pk }}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <h3>Вы уверены?</h3>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="{% url 'myadmin:reference_delete' ref.pk  %}" type="submit" class="btn btn-default" >Да</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Нет</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            {% endif %}
+        </tbody>
+      </table>
+
+<nav class="pagination-nav">
+  <ul class="pagination justify-content-center">
+   {% if references.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ news.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    {% endif %}
+    
+    
+<!--
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+-->
+    
+    {% if references.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ news.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endblock %}

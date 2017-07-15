@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block body %}
+
+<div class="row">
+    <h2 class="content-title">Наши партнеры</h2>
+    {% for each in partners %}
+    <div class="x">
+        <div class=" col-md-12 member shadow">
+            <a href="{{ partner.link }}" class="content-title" target="_blank">
+                <h3>{{ each.name }}</h3>
+            </a>
+            <img src="{{ each.img_url }}" alt="{{ each.name }}">
+            <p>{% autoescape off %} {{ each.descrip }} {% endautoescape %}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

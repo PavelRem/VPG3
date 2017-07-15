@@ -1,0 +1,60 @@
+{% extends 'navbar.html' %}
+{% load staticfiles %}
+
+{% block body %}
+
+<style>
+    #add-member{
+        margin-top: 20px;
+        width: 200px;
+        height: 50px;
+        padding-top: 12px;
+        font-size: 17px;
+    }
+    h3{
+        padding-bottom: 5px;
+        border-bottom: 1px solid red;
+        margin-bottom: 20px;
+    }
+    .table-hover tbody tr:hover td {
+        background-color: #eaeaea;
+    }
+    table input{
+        height: 20px;
+        width: 20px;
+    }
+    .inner-content{
+        overflow: hidden;
+        padding: 20px;
+    }
+</style>
+<div class="container">
+   <div class="inner-content admin">
+    <a id = "add-member" href="{% url 'myadmin:image_add' %}" type="submit" class="btn btn-default">Добавить Сотрудника</a>
+
+              {% for image in images %}
+
+                <img src="{{ image.img_url }}" alt="" width = "180px" height="150px">
+                <td><a href="{% url 'myadmin:image_change' image.pk  %}" type="submit" class="btn btn-default">Изменить</a></td>
+                <td><a type="submit" class="btn btn-default" data-toggle="modal" data-target="#Confirm{{ image.pk }}">Удалить</a></td>
+
+             <div id="Confirm{{ image.pk }}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <h3>Вы уверены?</h3>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="{% url 'myadmin:image_delete' image.pk  %}" type="submit" class="btn btn-default" >Да</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Нет</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+              {% endfor %}
+
+
+    </div>
+</div>
+
+{% endblock %}

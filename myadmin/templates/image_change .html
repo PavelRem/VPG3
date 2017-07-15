@@ -1,0 +1,64 @@
+{% extends 'navbar.html' %}
+{% load staticfiles %}
+
+{% block body %}
+<style>
+    .inner-content input{
+        margin-bottom: 20px;
+    }
+    #news-title{
+        margin-bottom: 20px;
+    }
+    #member-update{
+        margin-top: 20px;
+        width: 200px;
+        height: 50px;
+        padding-top: 10px;
+        font-size: 17px;
+        float: right;
+    }
+    .inner-content{
+        overflow: hidden;
+        padding: 20px;
+    }
+    .inner-content img{
+        height: 150px;
+        width: auto;
+        margin-bottom: 20px;
+    }
+</style>
+
+{% if image %}
+
+<div class="container">
+   <div class="inner-content admin">
+   <form enctype="multipart/form-data" action="{% url 'myadmin:image_change' image.pk  %}" method="post">
+    {% csrf_token %}
+    <img id="img" name="photo" src="{{ image.img_url }}">
+    <button id="member-update" type="submit" class="btn btn-default"> Изменить </button>
+    </form>
+    </div>
+</div>
+
+{% endif %}
+
+
+    <script>
+    $("#photo").change(function() {
+
+        var val = $(this).val();
+
+        switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+            case 'gif': case 'jpg': case 'png': case 'jpeg':
+                $("#file-error").text("");
+                break;
+            default:
+                $(this).val('');
+                $("#file-error").text("Файл должен быть картинкой (.jpg .png .jpeg .gif) ");
+                break;
+        }
+
+    });
+</script>
+
+  {% endblock %}

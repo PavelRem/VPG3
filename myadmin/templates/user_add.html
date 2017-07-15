@@ -1,0 +1,87 @@
+{% extends 'navbar.html' %}
+{% load staticfiles %}
+
+{% block body %}
+
+
+<style>
+    #name-inp, #password_check, #password{
+        margin-bottom: 20px;
+    }
+    #ok-btn{
+        margin-top: 20px;
+        width: 200px;
+        height: 50px;
+        padding-top: 10px;
+        font-size: 17px;
+        float: right;
+        display: none;
+    }
+    .inner-content{
+        overflow: hidden;
+        padding: 20px;
+    }
+</style>
+<div class="container">
+   <div class="inner-content admin">
+
+   {% if prtcl_user %}
+   <form id ="chenge-admin" enctype="multipart/form-data" action="{% url 'myadmin:user_update_save' prtcl_user.pk %}" method="post">
+        {% csrf_token %}
+        <label for="#name">Имя</label>
+        <input type="text" class="form-control" required name="name" id="name-inp" value="{{ prtcl_user.username }}">
+        <label for="#password">Старый пароль</label>
+        <input type="password" class="form-control" required name="password" id="password" value="">
+        <div id ="file-error"></div>
+        <label for="#password">Новый пароль</label>
+        <input type="password" class="form-control" required name="password_check" id="password_check" value="">
+        <button type="submit" id="ok-btn" class="btn btn-default"> Изменить </button>
+    </form>
+    {% else %}
+    <form id ="add-admin" enctype="multipart/form-data" action="{% url 'myadmin:user_add_save' %}" method="post">
+         {% csrf_token %}
+         <label for="#name">Имя</label>
+         <input type="text" class="form-control" required name="name" id="name-inp">
+         <label for="#password">Пароль</label>
+         <input type="password" class="form-control" required name="password" id="password" value="">
+         <label for="#password">Пароль еще раз</label>
+         <input type="password" class="form-control" required name="password_check" id="password_check" value="">
+         <div id ="file-error"></div>
+         <button type="submit" id="ok-btn" class="btn btn-default"> Добавить </button>
+     </form>
+    {% endif %}
+    </div>
+</div>
+
+<script>
+//    ПРОВЕРКА СТАРОГО ПАРОЛЯ
+$('#chenge-admin #password').blur(function (e) {
+        if($('#password').val()!=""){
+            if($('#password').val() == /*СЮДА ПАРОЛЬ*/){
+                $('#ok-btn').css("display", "inline-block");
+                $('#file-error').text("");
+            }
+            else{
+                $('#ok-btn').css("display", "none");
+                $('#file-error').text("Неправильный пароль");
+            }
+        }
+});
+
+    
+    
+$('#add-admin #password_check').blur(function (e) {
+        if($('#password').val()!=""){
+            if($('#password').val() == $('#password_check').val()){
+                $('#ok-btn').css("display", "inline-block");
+                $('#file-error').text("");
+            }
+            else{
+                $('#ok-btn').css("display", "none");
+                $('#file-error').text("Пароли не совпадают");
+            }
+        }
+});
+    
+</script>
+  {% endblock %}

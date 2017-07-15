@@ -1,0 +1,250 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ВПГ</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.ico' %}"/>
+    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/mainstyles.css' %}">
+    <link rel="stylesheet" href="{% static '/css/owl.carousel.min.css' %}">
+  </head>
+  <body>
+      <div id="fb-root"></div>
+        <script>
+            (function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) return;
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.9";
+                  fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+  	<div class="headline">
+  	    <div class="container">
+            <div class="contacts">
+                <div><span class="glyphicon glyphicon-phone-alt"></span>{{ contacts.number }}</div>
+                <div><span class="glyphicon glyphicon-envelope"></span>{{ contacts.email }}</div>
+                <div>
+                   <img src="{% static '/images/facebook-2.png' %}" id="fb-img">
+                    <a href="https://www.{{ contacts.address }}" target="_blank">{{ contacts.address }}</a>
+                </div>
+            </div>
+  	        <form action="{% url 'mynews:search' %}" method="POST">
+              {% csrf_token %}
+               <div class="search">
+                <input type="text" name="search_input" class = "s-inp" placeholder="Поиск...">
+                <button class = "s-btn" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </form>
+            <a href="http://zahistnik.com/" id="lawyer" target="_blank">Адвокат Рабочих</a>
+  	    </div>
+  	</div>
+  	<div class="container main">
+  	    <div class="face">
+  	        <div class="logo">
+  	            <a href="{% url 'mynews:news' %}"><img src="{% static '/images/logo.png' %}"></a>
+  	            <div class="logo-text">
+  	                <h4>Общественная правозащитная организация</h4>
+					<h2><strong>B</strong>осточная <strong>П</strong>равозащитная <strong>Г</strong>руппа</h2>
+                </div>
+  	        </div>
+  	        <i class="quote">Защита прав человека <br>в восточной Украине</i>
+  	    </div>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Navbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="Navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{% url 'mynews:aboutus' %}">О нас</a></li>
+                        <li><a href="{% url 'mynews:teammembers' %}">Наша команда</a></li>
+                        <li><a href="{% url 'mynews:activity' %}">Деятельность</a></li>
+                        <li><a href="{% url 'mynews:monitoring' %}">Мониторинг</a></li>
+                        <li><a href="{% url 'mynews:reference' %}">СМИ про нас</a></li>
+                        <li><a href="{% url 'mynews:partners' %}">Партнеры</a></li>
+                        <li><a href="{% url 'mynews:contacts' %}">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+  	</div>
+  	<div class="main-line">
+  	    <div class="container main">
+           {% if slides %}
+            <div id="Slider" class="carousel slide Slider" data-ride="carousel" data-pause="hover">
+                <ol class="carousel-indicators">
+                    <li data-target="#Slider" data-slide-to="0" class="active"></li>
+                    <li data-target="#Slider" data-slide-to="1"></li>
+                    <li data-target="#Slider" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                   {% for slide in slides %}
+                    <div class="item {% if forloop.counter == 1  %} active {% endif %}">
+                        <a href="{% url 'mynews:fullread' slide.pk %}">
+                            <img src="{{ slide.img_url }} ">
+                            <div class="carousel-caption">
+                                <h2> {{ slide.title }} </h2>
+                                <p>{% autoescape off %} {{ slide.text }} {% endautoescape %}</p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a href="#Slider" class = "left carousel-control" data-slide = "prev">
+                <span class ="glyphicon glyphicon-chevron-left"></span></a>
+                <a href="#Slider" class = "right carousel-control" data-slide = "next">
+                <span class ="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+            {% endif %}
+  	    </div>
+  	</div>
+  	<div class="container main">
+        <div class="col-md-8 content">
+            {% if news %}
+            <div class="row">
+                <h2 class="content-title">Последние новости</h2>
+                {% for each in news %}
+                <div class="col-md-6">
+                    <div class="news shadow">
+                        <img src="{{ each.img_url }}" alt="{{ each.title }}">
+                        <div class="news-text">
+                            <h3 id = "news-text-title">{{ each.title }}</h3>
+                            <p>{% autoescape off %} {{ each.text }} {% endautoescape %}</p>
+                        </div>
+                        <i id = "date">{{ each.pub_date | date:"d.m.Y" }}</i>
+                        <a id = "Reed-more" href="{% url 'mynews:fullread' each.pk %}">Читать больше</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            {% block body %}
+            {% endblock %}
+            {% endif %}
+            {% block paginate %}
+            {% endblock %}
+        </div>
+        <div class="col-md-4 sidebar">
+          {% if donate %}
+          {% else %}
+            <div class="donate sidebox shadow">
+                <h4><strong>Поддержите нашу деятельность</strong></h4>
+                <a id = "donate" type="button" class="btn btn-default" href ="{% url 'mynews:donate' %}">
+                <img src="{% static '/images/heart.png' %}">Поддержать
+                </a>
+            </div>
+          {% endif %}
+            <div class="report sidebox shadow">
+                <form class ="report-form" action="https://formspree.io/{{ contacts.email }}" method="POST">
+                    <h4><strong>Сообщить о нарушении прав (анонимно)</strong></h4>
+                    <div class="form-group">
+                        <input type="name" name = "Имя отправителя:" class="form-control" required id="InputName" placeholder="Укажите Имя">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" required id="InputEmail1" aria-describedby="emailHelp" placeholder="Укажите Email" name="Почта отправителя:">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control textarea" rows="6" required id="comment" placeholder="Введите сообщение" name = "Сообщение:"></textarea>
+                    </div>
+                    <button id = "report-sub" type="submit" type="button" class="btn btn-default" value="Send">Отправить</button>
+                </form>
+            </div>
+            <div class="sidebox shadow feed">
+                <div class="fb-page" data-href="https://www.facebook.com/east.hr.group" data-tabs="timeline" data-width="386" data-height="497" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/east.hr.group" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/east.hr.group"></a></blockquote></div>
+            </div>
+        </div>
+        <div class="partners sidebox shadow">
+            <h3>Наши Партнеры</h3>
+            <div class="owl-carousel">
+               {% if partners %}
+               {% for partner in partners %}
+                <div class="partner shadow">
+                    <a href="{{ partner.link }}">
+                       <div class="partner-img">
+                           <img src="{{ partner.img_url }}" alt="{{ partner.name }}">
+                       </div>
+                       <p>{{ partner.name }}</p>
+                    </a>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+  	</div>
+  	<div class="footer">
+        <div class="container main">
+            <div id = "quote-d">
+                <i class="quote">Основным приоритетом организации является всесторонняя  защита прав человека на востоке украины во время военного конфликта.</i>
+            </div>
+            <div class="center">
+                <a href="http://zahistnik.com/" id="lawyer" target="_blank">Адвокат Рабочих</a>
+            </div>
+            <div class="contacts">
+                <div><span class="glyphicon glyphicon-phone-alt"></span>{{ contacts.number }}</div>
+                <div><span class="glyphicon glyphicon-envelope"></span>{{ contacts.email }}</div>
+                <div>
+                   <img src="{% static '/images/facebook-2.png' %}" id="fb-img">
+                    <a href="https://www.{{ contacts.address }}" target="_blank">{{ contacts.address }}</a>
+                </div>
+            </div>
+        </div>
+  	</div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script type= text/javascript>
+        $(document).ready(function() {
+           $('li.active').removeClass('active');
+           $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+        });
+
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            autoplay: true,
+            autoplayHoverPause: true,
+            stagePadding: 10,
+            margin:20,
+            responsive:{
+                0:{
+                    items:2
+                },
+                400:{
+                    items:2
+                },
+                500:{
+                    items:3
+                },
+                600:{
+                    items:4,
+                    margin:0,
+                    stagePadding:0
+                },
+                700:{
+                    items:4
+                },
+                1000:{
+                    items:5
+                },
+                1200:{
+                    items:6
+                },
+                1600:{
+                    items:7
+                }
+            }
+        })
+    </script>
+  </body>
+</html

@@ -1,0 +1,55 @@
+{% load staticfiles %}
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/mainstyles.css' %}" rel="stylesheet">
+<style>
+    #login-btn{
+        margin-top: 20px;
+        width: 150px;
+        height: 40px;
+        padding-top: 8px;
+        font-size: 15px;
+        background-color: transparent;
+        border-radius: 5px;
+        margin-top: 30px;
+    }
+    #login{
+        margin: 200px auto;
+        width: 300px;
+        padding: 20px;
+        text-align: center;
+        overflow: hidden;
+    }
+    #login input{
+        margin-top: 20px;
+    }
+    #Error{
+        color: red;
+    }
+</style>
+    <div id="login" class ="shadow">
+        <form class="form-horizontal" name="LoginForm" action="/admin/login/" method="post">
+        {% csrf_token %}
+        {% if next %}
+            <input type="hidden" name="next" value="{{ next }}" />
+        {% endif %}
+        {% if wrong_input %}
+        <small id="Error" class="form-text text-muted">Не правельный логин или пароль</small>
+        {% endif %}
+        <div class="control-group">
+            <div class="controls">
+                <input type="text" class="form-control" name="username" id="username" placeholder="Лонин">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+               <input type="password" class="form-control"name="password" id="password" placeholder="Пароль">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button type="submit" class="btn btn-default" id="login-btn">Войти</button>
+            </div>
+        </div>
+        </form>
+</div>

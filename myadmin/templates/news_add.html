@@ -1,0 +1,113 @@
+{% extends 'navbar.html' %}
+{% load staticfiles %}
+
+{% block body %}
+
+
+<style>
+    #photo{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    #news-title{
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    #add-news{
+        margin-top: 20px;
+        width: 200px;
+        height: 50px;
+        padding-top: 10px;
+        font-size: 17px;
+        float: right;
+    }
+    .inner-content{
+        overflow: hidden;
+        padding: 20px;
+    }
+    #date-inp{
+        margin-left: 0px;
+        width: 300px;
+        margin-bottom: 20px;
+    }
+    .checkbox-inline{
+        margin-right: 20px;
+    }
+    .checkbox-inline input{
+        width: 15px;
+        height: 15px;
+    }
+    .chek{
+        display: inline-block;
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+</style>
+<div class="container">
+   <div class="inner-content admin">
+   <form enctype="multipart/form-data" action="{% url 'myadmin:news_add' %}" method="post" id="add-news-form">
+        {% csrf_token %}
+        <input type="file" id="photo" name="photo" required />
+        <div id="file-error"></div>
+        <label for="#date-inp">Дата</label>
+        <input type="date" class="form-control" name="date" id="date-inp" required>
+        <label for="#title">Заголовок</label>
+        <input type="text" class="form-control" name="title" id="news-title" required>
+
+
+        <div class="chek">
+            <label class="checkbox-inline"><input name="activ" type="checkbox" >Деятельность</label>
+            <label class="checkbox-inline"><input name="monitor" type="checkbox" >Мониторинг</label>
+            <label class="checkbox-inline"><input name="slider" type="checkbox" >Слайдер</label>
+        </div>
+      <textarea name="text" rows="10" cols="40" id="text"></textarea>
+      <button id="add-news" type="submit" class="btn btn-default"> Добавить </button>
+    </form>
+    </div>
+</div>
+
+
+  <script>
+  tinymce.init({
+    selector: 'textarea',
+    height: 400,
+    menubar: true,
+    required: true,
+    plugins: [
+      'advlist autolink lists link image charmap print preview anchor',
+      'searchreplace visualblocks code fullscreen',
+      'insertdatetime media table contextmenu paste code',
+      'image'
+    ],
+    toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |  image',
+    menubar: "insert",
+    image_list: [
+
+     {% for image in images %}
+
+     {title: '{{ image.img_url }}', value: '{{ image.img_url }}'},
+
+     {% endfor%}
+  });
+
+  </script>
+
+  <script>
+    $("#photo").change(function() {
+
+        var val = $(this).val();
+
+        switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+            case 'gif': case 'jpg': case 'png': case 'jpeg':
+                $("#file-error").text("");
+                break;
+            default:
+                $(this).val('');
+                $("#file-error").text("Файл должен быть картинкой (.jpg .png .jpeg .gif) ");
+                break;
+        }
+
+    });
+</script>
+
+  {% endblock %}
