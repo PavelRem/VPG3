@@ -200,8 +200,8 @@ def adminindex(request):
 
 @login_required(login_url='/admin/login/')
 def news(request):
-    news_list = NewsData.objects.all().order_by('-pub_date')
-    paginator = Paginator(news_list, 5) # Show 25 contacts per page
+    news_list = NewsData.objects.all().order_by('-updated_at')
+    paginator = Paginator(news_list, 10) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
         news = paginator.page(page)
