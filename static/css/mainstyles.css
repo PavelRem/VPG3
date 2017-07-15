@@ -488,7 +488,7 @@ p{
 #Reed-more:hover{
     text-shadow: 0px 0px 1px red;
 }
-.news img{
+.news .img{
     outline: 5px solid rgba(0,0,0,0.5);
 }
 /*======================================*/
