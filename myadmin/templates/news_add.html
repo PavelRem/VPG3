@@ -95,6 +95,21 @@
     input.onchange = function() {
       var file = this.files[0];
 
+      var fd = new FormData();
+      fd.append("file", file);
+      fd.append("csrfmiddlewaretoken",  document.getElementsByName('csrfmiddlewaretoken')[0].value);
+
+      $.ajax({url: '/admin/upload/',
+              type: "POST",
+              data: fd,
+              success: function (data) {
+                  console.log("succcess");
+              },
+              error: function (data){
+                console.log(data)
+              }
+            })
+
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = function () {
