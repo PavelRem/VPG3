@@ -14,6 +14,15 @@ from PIL import Image
 from news.models import NewsData, Aboutus, Team, Reference, Images, Partners, Contacts
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
+import json
+
+
+def upload(reques):
+    response_data = {
+        'location' : '/uploaded/image/path/image.png'
+    }
+
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 def login_user(request):
     logout(request)
