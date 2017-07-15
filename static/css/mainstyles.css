@@ -657,11 +657,7 @@ p{
     .headline #lawyer{
         display: none;
     }
-    #Slider .item img{
-	    width: 100%;
-        height: 420px !important;
-    }
-    #Slider .carousel-inner{
+     #Slider .img{
         height: 420px;
     }
     .news img{
