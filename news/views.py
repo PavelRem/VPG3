@@ -7,7 +7,7 @@ from django.contrib.postgres.search import TrigramSimilarity
 import django.contrib.postgres
 from django.contrib.postgres.search import SearchVector
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
-import re
+
 from .models import NewsData, Aboutus, Reference, Team, Partners, Contacts
 
 def index(request):
@@ -42,13 +42,10 @@ def news(request):
     }
     for x in data['news']:
         x.text = x.text[:130] + ' ...'
-        image_tag = re.compile(r'<img.*?/>').search(x.text).group()
-        x.text = data.replace(image_tag, '')
 
     for x in data['slides']:
         x.text = x.text[:130] + ' ...'
-        image_tag = re.compile(r'<img.*?/>').search(x.text).group()
-        x.text = data.replace(image_tag, '')
+
     return render(request, 'index.html',  data)
 
 def activity(request):
