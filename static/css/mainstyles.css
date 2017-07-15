@@ -849,6 +849,9 @@ p{
         width: 100%;
         height: 320px;
     }
+    .news img{
+        height: auto;
+    }
     .carousel-caption{
         margin-bottom: 15px;
     }
