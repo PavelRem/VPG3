@@ -11,6 +11,7 @@
     <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static '/css/mainstyles.css' %}">
     <link rel="stylesheet" href="{% static '/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/animate.css' %}">
   </head>
   <body>
       <div id="fb-root"></div>
@@ -116,7 +117,7 @@
                 <h2 class="content-title">Последние новости</h2>
                 {% for each in news %}
                 <div class="col-md-6">
-                    <div class="news shadow">
+                    <div class="news shadow fadeinLeft">
                        <div class="img">
                            <img src="{{ each.img_url }}" alt="{{ each.title }}">
                        </div>
