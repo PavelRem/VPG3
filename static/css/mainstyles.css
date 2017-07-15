@@ -623,6 +623,9 @@ p{
     #Slider .img{
         height: 540px;
     }
+    .news-text{
+        height: 180px;
+    }
 }
 @media screen and (max-width: 991px){
     .admin table{
