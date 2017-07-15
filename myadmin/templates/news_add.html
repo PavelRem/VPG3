@@ -70,8 +70,13 @@
   <script>
   tinymce.init({
     selector: 'textarea',
-  plugins: 'image code',
-  toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |  link image | code',
+    plugins: [
+   'advlist autolink lists link image charmap print preview anchor',
+   'searchreplace visualblocks code fullscreen',
+   'insertdatetime media table contextmenu paste code',
+  'image code'
+     ],
+  toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
   // enable title field in the Image dialog
   image_title: true,
   // enable automatic uploads of images represented by blob or data URIs
@@ -109,7 +114,7 @@
                   console.log("siucccess");
                   console.log(data)
                   img_url = data;
-                  $("#mceu_24-inp").val(img_url)
+                  $("#mceu_64-inp").val(img_url)
               },
               error: function (data){
                 console.log("error");
@@ -131,7 +136,7 @@
 
         // call the callback and populate the Title field with the file name
         cb(blobInfo.blobUri(), { title: file.name });
-        $("#mceu_24-inp").val(img_url)
+        $("#mceu_64-inp").val(img_url)
       };
     };
 
