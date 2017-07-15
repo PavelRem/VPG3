@@ -588,7 +588,7 @@ p{
 }
 /*------------------------------*/
 .text p > img, .text p > iframe{
-    max-width: 722px;
+    max-width: 722px !important;
 }
 /*------------------------------*/
 @media screen and (max-width: 1200px){
