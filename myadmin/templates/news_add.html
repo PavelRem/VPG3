@@ -47,6 +47,7 @@
    <div class="inner-content admin">
    <form enctype="multipart/form-data" action="{% url 'myadmin:news_add' %}" method="post" id="add-news-form">
         {% csrf_token %}
+        <label for="#photo">Превью</label>
         <input type="file" id="photo" name="photo" required />
         <div id="file-error"></div>
         <label for="#date-inp">Дата</label>
