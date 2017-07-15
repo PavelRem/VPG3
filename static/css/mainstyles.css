@@ -807,6 +807,9 @@ p{
     #Slider .img{
         height: 380px;
     }
+    #Slider img{
+        height: 100%;
+    }
     #donate{
         width: 300px;
     }
