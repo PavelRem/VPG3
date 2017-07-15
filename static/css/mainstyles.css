@@ -144,9 +144,6 @@ p{
     text-align: center;
     line-height: 2.5;
 }
-.logo strong{
-    font-weight: 800;
-}
 /*======================================*/
 .navbar {
 	min-height:40px !important;
