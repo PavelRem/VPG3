@@ -90,7 +90,9 @@
                    {% for slide in slides %}
                     <div class="item {% if forloop.counter == 1  %} active {% endif %}">
                         <a href="{% url 'mynews:fullread' slide.pk %}">
-                            <img src="{{ slide.img_url }} ">
+                           <div class= "img">
+                               <img src="{{ slide.img_url }} ">
+                           </div>
                             <div class="carousel-caption">
                                 <h2> {{ slide.title }} </h2>
                                 <p>{% autoescape off %} {{ slide.text }} {% endautoescape %}</p>

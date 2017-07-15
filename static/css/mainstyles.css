@@ -187,10 +187,9 @@ p{
 #Slider .item img{
 	width: 100%;
 }
-
-#Slider .carousel-inner{
-    height: 560px;
+#Slider .img{
     overflow: hidden;
+    height: 560px;
 }
 #Slider .carousel-indicators{
     bottom: 0px;
