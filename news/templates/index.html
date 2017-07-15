@@ -117,7 +117,7 @@
                 <h2 class="content-title">Последние новости</h2>
                 {% for each in news %}
                 <div class="col-md-6">
-                    <div class="news shadow fadeinLeft">
+                    <div class="news shadow">
                        <div class="img">
                            <img src="{{ each.img_url }}" alt="{{ each.title }}">
                        </div>
@@ -250,6 +250,9 @@
                 }
             }
         })
-    </script>
+        $(document).ready(function() {
+          $('news').addClass('animated fadeinLeft'); 
+        })
+</script>
   </body>
 </html
