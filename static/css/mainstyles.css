@@ -444,9 +444,11 @@ p{
 }
 .news img{
     width: 100%;
+}
+.img{
+    width: 100%;
     height: 200px;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
+    overflow:hidden;
 }
 .news h3{
 	margin-top: 0px;
