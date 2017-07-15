@@ -895,14 +895,10 @@ p{
     }
 }
 @media screen and (max-width: 535px){
-    #Slider .item img{
-	    width: 100%;
-        height: 290px !important;
-    }
-    #Slider .carousel-inner{
+    #Slider .img{
         height: 290px;
     }
-    .news img{
+    .news .img{
         height: 260px;
     }
     .logo-text{
