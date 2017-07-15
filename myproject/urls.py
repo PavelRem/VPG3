@@ -22,6 +22,8 @@ urlpatterns = [
     url(r'^', include('news.urls', namespace="mynews")),
     url(r'^news', include('news.urls', namespace="mynews")),
     url(r'^admin', include('myadmin.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^mce_filebrowser/', include('mce_filebrowser.urls')),
     #url(r'^admin/', admin.site.urls),
 ]
 
