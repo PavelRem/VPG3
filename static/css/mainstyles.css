@@ -898,7 +898,7 @@ p{
     #Slider .img{
         height: 290px;
     }
-    .news img{
+    .news .img{
         height: 260px;
     }
     .logo-text{
@@ -942,7 +942,7 @@ p{
     #Slider .img{
         height: 260px;
     }
-    .news img{
+    .news .img{
         height: 240px;
     }
     .headline #lawyer{
@@ -968,7 +968,7 @@ p{
      #Slider .img{
         height: 220px;
     }
-    .news img{
+    .news .img{
         height: 200px;
     }
     .carousel-caption p{
