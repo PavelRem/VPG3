@@ -21,8 +21,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^', include('news.urls', namespace="mynews")),
     url(r'^news', include('news.urls', namespace="mynews")),
-    url(r'^admin', include('myadmin.urls')),
-    url(r'^admin/tinymce/', include('tinymce.urls')),
 
     #url(r'^admin/', admin.site.urls),
 ]
