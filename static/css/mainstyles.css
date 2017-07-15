@@ -458,6 +458,7 @@ p{
 	padding-top: 10px;
     padding-left: 15px;
     padding-right: 15px;
+    overflow: hidden;
 }
 .news-text p > img, .news-text iframe{
     display: none;
