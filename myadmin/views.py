@@ -137,7 +137,7 @@ def news_update(request, id):
 
 def compres_img(path):
     im = Image.open(path)
-    im.save(path, format="JPEG", quality=35)
+    im.save(path, format="JPEG", quality=40)
 
 @login_required(login_url='/admin/login/')
 def news_update_save(request, id):
