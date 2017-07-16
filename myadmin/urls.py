@@ -8,6 +8,7 @@ urlpatterns = [
     #url(r'^activity/$', views.activity, name='activity'),
 #    url(r'^/change_aboutus/', views.change_team, name='change_team')
 
+    url(r'^/news_admin_search/$', views.news_admin_search, name='news_admin_search'),
     url(r'^/login/$', views.login_user, name='login_user'),
     url(r'^/upload/$', views.upload, name='upload'),
     url(r'^/logout/$', views.logout_user, name='logout_user'),

@@ -27,6 +27,17 @@
         padding: 20px;
     }
 </style>
+<div class="col-lg-6 text-center">
+    <form enctype="multipart/form-data" action="{% url 'myadmin:news_admin_search' %}" method="post">
+    {% csrf_token %}
+    <div class="input-group">
+      <input type="text" class="form-control" name="search_input" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Искать</button>
+      </span>
+    </div><!-- /input-group -->
+    </form>
+  </div><!-- /.col-lg-6 -->
 <div class="container">
    {% csrf_token %}
    <div class="inner-content admin">
@@ -97,14 +108,14 @@
       </a>
     </li>
     {% endif %}
-    
-    
+
+
 <!--
     <li class="page-item"><a class="page-link" href="#">1</a></li>
     <li class="page-item"><a class="page-link" href="#">2</a></li>
     <li class="page-item"><a class="page-link" href="#">3</a></li>
 -->
-    
+
     {% if news.has_next %}
     <li class="page-item">
       <a class="page-link" href="?page={{ news.next_page_number }}" aria-label="Next">

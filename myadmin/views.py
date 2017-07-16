@@ -24,7 +24,7 @@ def upload(request):
         obj = Images.objects.create()
         obj.img = request.FILES.get('file', '')
         obj.save()
-        compres_img("/home/shostatscky.andriy/myproject/media/news/"+request.FILES['file'].name)
+        compres_img(settings.MEDIA_ROOT + "/news/" + request.FILES['file'].name)
         return HttpResponse(obj.img_url)
     else:
         return HttpResponse("Error in Sending Email")
@@ -51,6 +51,24 @@ def logout_user(request):
     return redirect('/')
 
 @login_required(login_url='/admin/login/')
+def news_admin_search(request):
+    keywords = request.POST.get('search_input', '')
+    vector = SearchVector('text', 'title')
+    query = SearchQuery(keywords)
+    news_list = NewsData.objects.annotate(rank=SearchRank(vector, query)).filter(rank__gte=0.04).order_by('-rank')
+    #news_list = NewsData.objects.annotate(similarity=TrigramSimilarity('text', keywords),).filter(similarity__gt=0.3).order_by('-similarity')
+    paginator = Paginator(news_list, 10) # Show 25 contacts per page
+    page = request.GET.get('page')
+    try:
+        news = paginator.page(page)
+    except PageNotAnInteger:
+        news = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        news = paginator.page(paginator.num_pages)
+    return render(request, 'news.html', {'news': news })
+
+@login_required(login_url='/admin/login/')
 def image(request):
     return render(request, 'image.html',  {'images': Images.objects.all()})
 
@@ -62,7 +80,7 @@ def image_add(request):
             obj.img = request.FILES.get('image', '')
             obj.save()
         if request.FILES.get('image', ''):
-            compres_img("/home/shostatscky.andriy/myproject/media/news/"+request.FILES['image'].name)
+            compres_img(settings.MEDIA_ROOT + "/news/" + request.FILES['image'].name)
         return redirect('/admin/image/')
 
     return render(request, 'image_add.html',  {})
@@ -75,7 +93,7 @@ def image_change(request, id):
             obj.img = request.FILES.get('image', '')
         obj.save()
         if request.FILES.get('image', ''):
-            compres_img("/home/shostatscky.andriy/myproject/media/news/"+request.FILES['image'].name)
+            compres_img(settings.MEDIA_ROOT + "/news/" + request.FILES['image'].name)
         return redirect('/admin/image/')
     return render(request, 'image_change.html',  {'image': Team.objects.get(pk=id)})
 
@@ -148,7 +166,7 @@ def news_update_save(request, id):
             obj.img = request.FILES.get('photo', '')
         obj.save()
         if request.FILES.get('photo', ''):
-            compres_img("/home/shostatscky.andriy/myproject/media/news/"+request.FILES['photo'].name)
+            compres_img(settings.MEDIA_ROOT + "/news/" + request.FILES['photo'].name)
         return redirect('/admin/news')
     return render(request, 'news_update.html',  {'news': NewsData.objects.all()})
 
@@ -194,7 +212,7 @@ def news_add(request):
             obj.img = request.FILES.get('photo', '')
         obj.save()
         if request.FILES.get('photo', ''):
-            compres_img("/home/shostatscky.andriy/myproject/media/news/"+request.FILES['photo'].name)
+            compres_img(settings.MEDIA_ROOT + "/news/" + request.FILES['photo'].name)
         return redirect('/admin/news')
 
     return render(request, 'news_add.html',  {'news': NewsData.objects.all(), 'images': Images.objects.all()})
