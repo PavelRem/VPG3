@@ -27,18 +27,20 @@
         padding: 20px;
     }
 </style>
-<div class="col-lg-6 text-center">
-    <form enctype="multipart/form-data" action="{% url 'myadmin:news_admin_search' %}" method="post">
-    {% csrf_token %}
-    <div class="input-group">
-      <input type="text" class="form-control" name="search_input" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Искать</button>
-      </span>
-    </div><!-- /input-group -->
-    </form>
-  </div><!-- /.col-lg-6 -->
+
 <div class="container">
+  <div class="col-lg-6">
+      <form enctype="multipart/form-data" action="{% url 'myadmin:news_admin_search' %}" method="post">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" class="form-control" name="search_input" placeholder="Search for...">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Искать</button>
+        </span>
+      </div><!-- /input-group -->
+      </form>
+    </div><!-- /.col-lg-6 -->
+    
    {% csrf_token %}
    <div class="inner-content admin">
     <a id = "add-news" href="{% url 'myadmin:news_add' %}" type="submit" class="btn btn-default">Добавить Новость</a>
