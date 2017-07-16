@@ -122,7 +122,7 @@
                        </div>
                         <div class="news-text">
                             <h3 id = "news-text-title">{{ each.title }}</h3>
-                            <p style="font-size: 14px;">{% autoescape off %} {{ each.text }} {% endautoescape %}</p>
+                            <p style="font-size: 14px !important;">{% autoescape off %} {{ each.text }} {% endautoescape %}</p>
                         </div>
                         <i id = "date">{{ each.pub_date | date:"d.m.Y" }}</i>
                         <a id = "Reed-more" href="{% url 'mynews:fullread' each.pk %}">Читать больше</a>
