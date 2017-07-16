@@ -116,12 +116,12 @@ def search(request):
     query = SearchQuery(keywords)
     news_list = NewsData.objects.annotate(rank=SearchRank(vector, query)).filter(rank__gte=0.04).order_by('-rank')
     #news_list = NewsData.objects.annotate(similarity=TrigramSimilarity('text', keywords),).filter(similarity__gt=0.3).order_by('-similarity')
-    paginator = Paginator(news_list, 6) # Show 25 contacts per page
+    paginator = Paginator(news_list, 10) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
         news = paginator.page(page)
     except PageNotAnInteger:
-        news = paginator.page(6)
+        news = paginator.page(1)
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         news = paginator.page(paginator.num_pages)
