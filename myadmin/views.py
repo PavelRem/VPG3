@@ -158,7 +158,7 @@ def news_delete(request, id):
     soup = BeautifulSoup(obj.text)
     imgs = soup.findAll('img')
     for img in imgs:
-        os.remove(settings.MEDIA_ROOT +  (img.get('src').split('/'))[-1])
+        os.remove(settings.MEDIA_ROOT + "/" + (img.get('src').split('/'))[-1])
     obj.delete()
     return redirect('/admin/news')
 
