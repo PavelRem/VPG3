@@ -333,6 +333,14 @@ p{
     padding-left: 30px;
 }
 /*======================================*/
+.owl-carousel .owl-stage {
+  display: flex;
+  align-items: center;
+}
+
+.owl-carousel .caption {
+  text-align: center;
+}
 .partners{
     margin-top: 10px;
     text-align: center;
@@ -351,10 +359,10 @@ p{
 .partner{
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 210px;
+    height: 204px;
     background-color: #fff;
     overflow: hidden;
-    width: 126px;
+    width: 130px;
 }
 .partner:hover{
     border-color: red;
