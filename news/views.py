@@ -7,7 +7,7 @@ from django.contrib.postgres.search import TrigramSimilarity
 import django.contrib.postgres
 from django.contrib.postgres.search import SearchVector
 from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
-
+from bs4 import BeautifulSoup
 from .models import NewsData, Aboutus, Reference, Team, Partners, Contacts
 
 def index(request):
@@ -41,10 +41,12 @@ def news(request):
         'contacts':Contacts.objects.all()[0]
     }
     for x in data['news']:
-        x.text = x.text[:130] + ' ...'
+        soup = BeautifulSoup(x.text)
+        x.text = (soup.text)[:130] + ' ...'
 
     for x in data['slides']:
-        x.text = x.text[:130] + ' ...'
+        soup = BeautifulSoup(x.text)
+        x.text = (soup.text)[:130] + ' ...'
 
     return render(request, 'index.html',  data)
 
