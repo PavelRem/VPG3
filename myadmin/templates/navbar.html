@@ -124,7 +124,7 @@ file_picker_callback: function(cb, value, meta) {
       // call the callback and populate the Title field with the file name
       cb(blobInfo.blobUri(), { title: file.name });
       //$("#mceu_59-inp").val(img_url);
-     $( ".mce-textbox:first" ).val(img_url);
+     $( ".mce-container mce-panel mce-floatpanel mce-window mce-in .mce-textbox:first" ).val(img_url);
     };
   };
 
