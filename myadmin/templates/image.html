@@ -32,27 +32,23 @@
    <div class="inner-content admin">
     <a id = "add-member" href="{% url 'myadmin:image_add' %}" type="submit" class="btn btn-default">Добавить image</a>
 
+            <div class="row">
+
               {% for image in images %}
-
-                <img src="{{ image.img_url }}" alt="" width = "180px" height="150px">
-                <td><a href="{% url 'myadmin:image_change' image.pk  %}" type="submit" class="btn btn-default">Изменить</a></td>
-                <td><a type="submit" class="btn btn-default" data-toggle="modal" data-target="#Confirm{{ image.pk }}">Удалить</a></td>
-
-             <div id="Confirm{{ image.pk }}" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body">
-                    <h3>Вы уверены?</h3>
-                  </div>
-                  <div class="modal-footer">
-                    <a href="{% url 'myadmin:image_delete' image.pk  %}" type="submit" class="btn btn-default" >Да</a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Нет</button>
+              <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                  <img src="{{ image.img_url }}" alt="...">
+                  <div class="caption">
+                    <p><a href="{% url 'myadmin:image_change' image.pk  %}" role="button">Изменить</a>
+                    <a href="{% url 'myadmin:image_delete' image.pk  %}" role="button">Удалить</a></p>
                   </div>
                 </div>
               </div>
-            </div>
+              </div>
+
               {% endfor %}
 
+            </div>
 
     </div>
 </div>
