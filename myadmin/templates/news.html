@@ -65,7 +65,7 @@
            {% for each in news %}
             {# Each "contact" is a Contact model object. #}
             <tr>
-                <td><img src="{{ each.img_url }}" alt="" width = "80px" height="50px"></td>
+                <td><img src="{{ each.img_url }}" alt="" width = "80px" ></td>
                 <td>{{ each.pub_date | date:"d/m/Y" }}</td>
                 <td>{{ each.title }}</td>
                 <td><input class="filters" name="activ" id="{{ each.pk }}" type="checkbox" {% if each.activity %} checked {% endif %}></td>
