@@ -119,6 +119,8 @@ def search(request):
         news = paginator.page(paginator.num_pages)
 
     for n in news:
-        n.text = n.text[:130] + ' ...'
+        soup = BeautifulSoup(n.text)
+        n.text = (soup.text)[:130] + ' ...'
+        n.text = n.text.replace("&nbsp", " ");
 
     return render(request, 'searchnews.html', {'searchnews': news, "keywords": keywords, 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0] })
