@@ -109,7 +109,6 @@ def search(request):
             request.method = 'POST'
 
     if request.method == 'POST':
-        form = PersonForm(request.POST)
         request.session['search-post'] = request.POST
 
     keywords = request.POST.get('search_input', '')
