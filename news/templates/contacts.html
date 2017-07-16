@@ -6,18 +6,9 @@
     {% if contacts %}
 
 		<div class="inner-content">
-				<div class="phone">
-								<div class="x"></div>
-								Телефон: <a href="#">{{ contacts.number }}</a>
-				</div>
-				<div class="mail">
-								<div class="x"></div>
-								Email: <a href="#">{{ contacts.email }}</a>
-				</div>
-				<div class="mail">
-								<div class="x"></div>
-								Адрес: <a href="#">{{ contacts.address }}</a>
-				</div>
+
+				{% autoescape off %} {{ contacts.text }} {% endautoescape %}
+
 		</div>
 
 
