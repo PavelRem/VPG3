@@ -53,7 +53,7 @@ def news(request):
     return render(request, 'index.html',  data)
 
 def activity(request):
-    news_list = NewsData.objects.filter(activity=True).all()
+    news_list = NewsData.objects.filter(activity=True)..order_by("-pub_date").all()
     paginator = Paginator(news_list, 6) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
@@ -72,7 +72,7 @@ def activity(request):
     return render(request, 'activity.html', {'activity_news': news, 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0] })
 
 def monitoring(request):
-    news_list = NewsData.objects.filter(monitoring=True).all()
+    news_list = NewsData.objects.filter(monitoring=True)..order_by("-pub_date").all()
     paginator = Paginator(news_list, 6) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
@@ -114,7 +114,7 @@ def search(request):
     keywords = request.POST.get('search_input', '')
     vector = SearchVector('text', 'title')
     query = SearchQuery(keywords)
-    news_list = NewsData.objects.annotate(rank=SearchRank(vector, query)).filter(rank__gte=0.04).order_by('-rank')
+    news_list = NewsData.objects.annotate(rank=SearchRank(vector, query)).filter(rank__gte=0.04).order_by('-rank').order_by("-pub_date")
     #news_list = NewsData.objects.annotate(similarity=TrigramSimilarity('text', keywords),).filter(similarity__gt=0.3).order_by('-similarity')
     paginator = Paginator(news_list, 6) # Show 25 contacts per page
     page = request.GET.get('page')

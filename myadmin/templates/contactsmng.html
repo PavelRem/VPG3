@@ -25,12 +25,7 @@
    <div class="inner-content admin">
         <form enctype="multipart/form-data" action="{% url 'myadmin:change_contacts' %}" method="post" id="newsdata_form" class = "m-input">
             {% csrf_token %}
-            <label for="#email">Эл. адрес</label>
-            <input type="email" class="form-control"  required name="email" id="email" value="{{ info.email }}">
-            <label for="#tel">Телефон</label>
-            <input type="text" class="form-control"  required name="tel" id="tel" value="{{ info.number }}">
-            <label for="#tel">Фейсбук</label>
-            <input type="text" class="form-control" required name="address" id="address" value="{{ info.address }}">
+            <textarea name="text" rows="10" cols="40" id="text">% if info %} {% autoescape off %} {{ info.text }} {% endautoescape %} {% endif%}</textarea>
             <button type="submit" id="about-btn" class="btn btn-default" onclick="get_editor_content()">{% if info %} Изменить {% else %} Добавить {% endif%}
             </button>
         </form>

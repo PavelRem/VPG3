@@ -193,12 +193,7 @@
                 <a href="http://zahistnik.com/" id="lawyer" target="_blank">Адвокат Рабочих</a>
             </div>
             <div class="contacts">
-                <div><span class="glyphicon glyphicon-phone-alt"></span>{{ contacts.number }}</div>
-                <div><span class="glyphicon glyphicon-envelope"></span>{{ contacts.email }}</div>
-                <div>
-                   <img src="{% static '/images/facebook-2.png' %}" id="fb-img">
-                    <a href="https://www.{{ contacts.address }}" target="_blank">{{ contacts.address }}</a>
-                </div>
+              {% autoescape off %} {{ contacts.text }} {% endautoescape %}
             </div>
         </div>
   	</div>

@@ -65,7 +65,7 @@ def news_admin_search(request):
     keywords = request.POST.get('search_input', '')
     vector = SearchVector('text', 'title')
     query = SearchQuery(keywords)
-    news_list = NewsData.objects.annotate(rank=SearchRank(vector, query)).filter(rank__gte=0.04).order_by('-rank')
+    news_list = NewsData.objects.annotate(rank=SearchRank(vector, query)).filter(rank__gte=0.04).order_by('-rank').order_by("-pub_date")
     #news_list = NewsData.objects.annotate(similarity=TrigramSimilarity('text', keywords),).filter(similarity__gt=0.3).order_by('-similarity')
     paginator = Paginator(news_list, 10) # Show 25 contacts per page
     page = request.GET.get('page')
@@ -444,9 +444,7 @@ def change_contacts(request):
         obj = Contacts.objects.all()[:1].get()
     else:
         obj = Contacts.objects.create()
-    obj.number = request.POST['tel']
-    obj.email = request.POST['email']
-    obj.address = request.POST['address']
+    obj.text = request.POST['text']
     obj.save()
     return redirect('/admin/contacts')
 
