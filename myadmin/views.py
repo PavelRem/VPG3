@@ -445,6 +445,9 @@ def change_contacts(request):
     else:
         obj = Contacts.objects.create()
     obj.text = request.POST['text']
+    obj.email = request.POST['email']
+    obj.number = request.POST['number']
+    obj.address = request.POST['address']
     obj.save()
     return redirect('/admin/contacts')
 
