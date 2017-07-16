@@ -156,9 +156,9 @@ def news_update_save(request, id):
 def news_delete(request, id):
     obj = NewsData.objects.get(pk=id)
     soup = BeautifulSoup(obj.text)
-    imgs = soup.findAll('img').get('src')
+    imgs = soup.findAll('img')
     for img in images:
-        os.remove("/home/shostatscky.andriy/myproject" + img)
+        os.remove("/home/shostatscky.andriy/myproject" + img.get('src'))
     obj.delete()
     return redirect('/admin/news')
 
