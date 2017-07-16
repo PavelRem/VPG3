@@ -21,7 +21,7 @@ def aboutus(request):
     return render(request, 'aboutus.html',  {'aboutus': Aboutus.objects.all()[0], 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0]})
 
 def reference(request):
-    reference_list = Reference.objects.all()
+    reference_list = Reference.objects.order_by("-pub_date").all()
     paginator = Paginator(reference_list, 10) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
