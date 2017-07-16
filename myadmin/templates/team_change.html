@@ -44,7 +44,7 @@
         <label for="#name">Имя</label>
         <input type="text" class="form-control" name="name" required id="name" value="{{ member.name }}">
         <label for="#fb"> Ссылка на страницу в Facebook </label>
-        <input type="text" class="form-control" name="fb" required id="fb-inp"/>
+        <input type="text" class="form-control" name="fb" required id="fb-inp" value="{{ member.fb }}/>
         <label for="descrip">Описание</label>
         <textarea name="descrip" rows="10" cols="40" id="descrip"> {% autoescape off %}  {{ member.descrip }} {% endautoescape %}</textarea>
       <button id="member-update" type="submit" class="btn btn-default"> Изменить </button>
@@ -55,7 +55,7 @@
   {% else  %}
 {% endif %}
 
- 
+
     <script>
     $("#photo").change(function() {
 
