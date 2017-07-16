@@ -63,8 +63,8 @@ def activity(request):
         news = paginator.page(paginator.num_pages)
 
     for n in news:
-        soup = BeautifulSoup(x.text)
-        n.text = n.text[:130] + ' ...'
+        soup = BeautifulSoup(n.text)
+        n.text = (soup.text)[:130] + ' ...'
 
     return render(request, 'activity.html', {'activity_news': news, 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0] })
 
@@ -81,8 +81,8 @@ def monitoring(request):
         news = paginator.page(paginator.num_pages)
 
     for n in news:
-        soup = BeautifulSoup(x.text)
-        n.text = n.text[:130] + ' ...'
+        soup = BeautifulSoup(n.text)
+        n.text = (soup.text)[:130] + ' ...'
 
     return render(request, 'monitoring.html', {'monitoring_news': news, 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0] })
 
