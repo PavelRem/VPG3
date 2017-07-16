@@ -459,12 +459,13 @@ p{
     padding-left: 15px;
     padding-right: 15px;
     overflow: hidden;
+    font-size: 14px !important;
 }
 .news-text p > img, .news-text iframe{
     display: none;
 }
 .news-text p{
-    font-size: 14px;
+    font-size: 14px !important;
     padding-top: 0px;
 }
 #news-text-title{
