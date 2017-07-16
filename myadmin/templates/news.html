@@ -31,7 +31,7 @@
 <div class="container">
    {% csrf_token %}
    <div class="inner-content admin">
-    <a id = "add-news" href="{% url 'myadmin:news_add' %}" type="submit" class="btn btn-default">Добавить Новость</a>
+    <a id = "add-news" href="{% url 'myadmin:news_add' %}" type="submit" class="btn btn-default">Добавить Новость</a><br>
     <form enctype="multipart/form-data" action="{% url 'myadmin:news_admin_search' %}" method="post">
     {% csrf_token %}
       <div class="input-group">
