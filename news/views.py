@@ -53,7 +53,7 @@ def news(request):
     return render(request, 'index.html',  data)
 
 def activity(request):
-    news_list = NewsData.objects.filter(activity=True)..order_by("-pub_date").all()
+    news_list = NewsData.objects.filter(activity=True).order_by("-pub_date").all()
     paginator = Paginator(news_list, 6) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
@@ -72,7 +72,7 @@ def activity(request):
     return render(request, 'activity.html', {'activity_news': news, 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0] })
 
 def monitoring(request):
-    news_list = NewsData.objects.filter(monitoring=True)..order_by("-pub_date").all()
+    news_list = NewsData.objects.filter(monitoring=True).order_by("-pub_date").all()
     paginator = Paginator(news_list, 6) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
