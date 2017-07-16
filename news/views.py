@@ -108,7 +108,7 @@ def search(request):
     query = SearchQuery(keywords)
     news_list = NewsData.objects.annotate(rank=SearchRank(vector, query)).filter(rank__gte=0.04).order_by('-rank')
     #news_list = NewsData.objects.annotate(similarity=TrigramSimilarity('text', keywords),).filter(similarity__gt=0.3).order_by('-similarity')
-    paginator = Paginator(news_list, 6) # Show 25 contacts per page
+    paginator = Paginator(news_list, 3) # Show 25 contacts per page
     page = request.GET.get('page')
     try:
         news = paginator.page(page)
@@ -121,6 +121,6 @@ def search(request):
     for n in news:
         soup = BeautifulSoup(n.text)
         n.text = (soup.text)[:130] + ' ...'
-        n.text = n.text.replace("&nbsp", " ");
+        n.text = n.text.replace("&nbsp", " ")
 
     return render(request, 'searchnews.html', {'searchnews': news, "keywords": keywords, 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0] })
