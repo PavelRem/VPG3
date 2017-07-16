@@ -459,7 +459,6 @@ p{
     padding-left: 15px;
     padding-right: 15px;
     overflow: hidden;
-    font-size: 14px !important;
 }
 .news-text p > img, .news-text iframe{
     display: none;
@@ -492,6 +491,9 @@ p{
 .news .img{
     outline: 5px solid rgba(0,0,0,0.1);
     outline-offset: -5px;
+}
+.news-text h4, .news-text h3, .news-text h3, .news-text h2, .news-text h1, .news-text p, .news-text em, .news-text i, .news-text strong{
+    font-size: 14px;
 }
 /*======================================*/
 .x{
