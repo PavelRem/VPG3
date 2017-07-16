@@ -10,6 +10,8 @@ from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchQuery, SearchRank, SearchVector
 from PIL import Image
 from news.models import NewsData, Aboutus, Team, Reference, Images, Partners, Contacts
 from django.contrib.auth import authenticate, login, logout
