@@ -98,14 +98,10 @@ file_picker_callback: function(cb, value, meta) {
             contentType: false,
             enctype: 'multipart/form-data',
             success: function (data) {
-                console.log("siucccess");
-                console.log(data)
                 img_url = data;
                 $("#mceu_59-inp").val(img_url)
             },
             error: function (data){
-              console.log("error");
-              console.log(data)
             }
           })
 

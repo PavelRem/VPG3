@@ -43,10 +43,12 @@ def news(request):
     for x in data['news']:
         soup = BeautifulSoup(x.text)
         x.text = (soup.text)[:130] + ' ...'
+        x.text = x.text.replace("&nbsp", " ");
 
     for x in data['slides']:
         soup = BeautifulSoup(x.text)
         x.text = (soup.text)[:130] + ' ...'
+        x.text = x.text.replace("&nbsp", " ");
 
     return render(request, 'index.html',  data)
 
@@ -65,6 +67,7 @@ def activity(request):
     for n in news:
         soup = BeautifulSoup(n.text)
         n.text = (soup.text)[:130] + ' ...'
+        n.text = n.text.replace("&nbsp", " ");
 
     return render(request, 'activity.html', {'activity_news': news, 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0] })
 
@@ -83,6 +86,7 @@ def monitoring(request):
     for n in news:
         soup = BeautifulSoup(n.text)
         n.text = (soup.text)[:130] + ' ...'
+        n.text = n.text.replace("&nbsp", " ");
 
     return render(request, 'monitoring.html', {'monitoring_news': news, 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0] })
 
