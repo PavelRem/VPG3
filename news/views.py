@@ -105,7 +105,7 @@ def partners(request):
 def search(request):
     if not request.method == 'POST':
         if 'search-post' in request.session:
-            request.POST = request.session['search-persons-post']
+            request.POST = request.session['search-post']
             request.method = 'POST'
 
     if request.method == 'POST':
