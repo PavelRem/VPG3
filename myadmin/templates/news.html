@@ -34,7 +34,7 @@
     <a id = "add-news" href="{% url 'myadmin:news_add' %}" type="submit" class="btn btn-default">Добавить Новость</a>
     <form enctype="multipart/form-data" action="{% url 'myadmin:news_admin_search' %}" method="post">
     {% csrf_token %}
-      <input type="text" class="form-control" name="search_input" placeholder="Search for...">
+      <input type="text" class="form-control" style="width: 50%;" name="search_input" placeholder="Search for...">
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit">Искать</button>
       </span>
