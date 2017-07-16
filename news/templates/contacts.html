@@ -4,14 +4,16 @@
 {% block body %}
 
     {% if contacts %}
-
-		<div class="inner-content">
-
-				{% autoescape off %} {{ contacts.text }} {% endautoescape %}
-
-		</div>
-
-
+    <div class="row">
+          <h2 class="content-title">Контакты</h2>
+           <div class="x">
+            <div class="inner-content shadow">
+                <div class="text">
+                    <p>{% autoescape off %} {{ contacts.text }} {% endautoescape %}</p>
+                </div>
+            </div>
+        </div>
+        </div>
     {% endif %}
 
 {% endblock %}
