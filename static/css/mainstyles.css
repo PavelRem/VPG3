@@ -333,12 +333,15 @@ p{
     padding-left: 30px;
 }
 /*======================================*/
-.owl-carousel .owl-stage {
-  display: flex;
-  align-items: center;
+.owl-centered .owl-wrapper {
+  display: table !important;
 }
-
-.owl-carousel .caption {
+.owl-centered .owl-item {
+  display: table-cell;
+  float: none;
+  vertical-align: middle;
+}
+.owl-centered .owl-item > div {
   text-align: center;
 }
 .partners{
