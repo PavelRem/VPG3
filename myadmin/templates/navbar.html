@@ -119,7 +119,7 @@ file_picker_callback: function(cb, value, meta) {
       var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
       var base64 = reader.result.split(',')[1];
       var blobInfo = blobCache.create(id, file, base64);
-      blobCache.add(img_url);
+      blobCache.add(blobInfo);
 
       // call the callback and populate the Title field with the file name
       cb(blobInfo.blobUri(), { title: file.name });
