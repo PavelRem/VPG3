@@ -636,6 +636,9 @@ p{
     .news .img{
         height: 170px;
     }
+    .news-text{
+        height: 270px;
+    }
 }
 @media screen and (max-width: 991px){
     .admin table{
