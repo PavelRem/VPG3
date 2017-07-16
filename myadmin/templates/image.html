@@ -35,15 +35,14 @@
             <div class="row">
 
               {% for image in images %}
-              <div class="col-sm-6 col-md-4">
+               <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                  <img src="{{ image.img_url }}" alt="...">
+                  <img src="{{ image.img_url }}" alt="..." style="width: 300px;">
                   <div class="caption">
-                    <p><a href="{% url 'myadmin:image_change' image.pk  %}" role="button">Изменить</a>
-                    <a href="{% url 'myadmin:image_delete' image.pk  %}" role="button">Удалить</a></p>
+                    <p><a href="{% url 'myadmin:image_change' image.pk  %}" class="btn btn-default" role="button">Изменить</a>
+                    <a href="{% url 'myadmin:image_delete' image.pk  %}" class="btn btn-default" role="button">Удалить</a></p>
                   </div>
                 </div>
-              </div>
               </div>
 
               {% endfor %}
