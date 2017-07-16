@@ -121,7 +121,7 @@ def search(request):
     try:
         news = paginator.page(page)
     except PageNotAnInteger:
-        news = paginator.page(1)
+        news = paginator.page(6)
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         news = paginator.page(paginator.num_pages)

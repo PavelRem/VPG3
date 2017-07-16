@@ -54,6 +54,14 @@ def logout_user(request):
 
 @login_required(login_url='/admin/login/')
 def news_admin_search(request):
+    if not request.method == 'POST':
+        if 'search-post' in request.session:
+            request.POST = request.session['search-post']
+            request.method = 'POST'
+
+    if request.method == 'POST':
+        request.session['search-post'] = request.POST
+
     keywords = request.POST.get('search_input', '')
     vector = SearchVector('text', 'title')
     query = SearchQuery(keywords)
@@ -350,6 +358,7 @@ def team_change(request, id):
         obj = Team.objects.get(pk=id)
         obj.name = request.POST.get('name', '')
         obj.descrip = request.POST.get('descrip', '')
+        obj.fb = request.POST.get('fb', '')
         if request.FILES.get('photo', ''):
             obj.img = request.FILES.get('photo', '')
         obj.save()
