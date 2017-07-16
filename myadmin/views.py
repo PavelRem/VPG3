@@ -15,6 +15,8 @@ from news.models import NewsData, Aboutus, Team, Reference, Images, Partners, Co
 from django.contrib.auth import authenticate, login, logout
 from django.conf import settings
 import json
+import os
+from bs4 import BeautifulSoup
 
 
 def upload(request):
@@ -152,8 +154,11 @@ def news_update_save(request, id):
 
 @login_required(login_url='/admin/login/')
 def news_delete(request, id):
-    print("id = ", id)
     obj = NewsData.objects.get(pk=id)
+    soup = BeautifulSoup(obj.text)
+    imgs = soup.findAll('img').get('src')
+    for img in images:
+        os.remove("/home/shostatscky.andriy/myproject" + img)
     obj.delete()
     return redirect('/admin/news')
 
