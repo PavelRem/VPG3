@@ -116,10 +116,10 @@ file_picker_callback: function(cb, value, meta) {
       // registry. In the next release this part hopefully won't be
       // necessary, as we are looking to handle it internally.
       var id = img_url;
-      var blobCache =  '';
-      var base64 = '';
+      var blobCache =  tinymce.activeEditor.editorUpload.blobCache;
+      var base64 = reader.result.split(',')[1];
       var blobInfo = blobCache.create(id, file, base64);
-      blobCache.add(blobInfo);
+      blobCache.add(img_url);
 
       // call the callback and populate the Title field with the file name
       cb(blobInfo.blobUri(), { title: file.name });
