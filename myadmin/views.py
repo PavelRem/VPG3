@@ -175,11 +175,12 @@ def news_update_save(request, id):
 @login_required(login_url='/admin/login/')
 def news_delete(request, id):
     obj = NewsData.objects.get(pk=id)
-    soup = BeautifulSoup(obj.text)
-    imgs = soup.findAll('img')
-    for img in imgs:
-        os.remove(settings.MEDIA_ROOT + "/news/" + (img.get('src').split('/'))[-1])
-    obj.delete()
+    if obj:
+        soup = BeautifulSoup(obj.text)
+        imgs = soup.findAll('img')
+        for img in imgs:
+            os.remove(settings.MEDIA_ROOT + "/news/" + (img.get('src').split('/'))[-1])
+        obj.delete()
     return redirect('/admin/news')
 
 @login_required(login_url='/admin/login/')
@@ -321,7 +322,9 @@ def reference_update_save(request, id):
 
 @login_required(login_url='/admin/login/')
 def reference_delete(request, id):
-    Reference.objects.get(pk=id).delete()
+    obj = Reference.objects.get(pk=id)
+    if obj:
+        obj.delete()
     return redirect('/admin/reference/')
 
 @login_required(login_url='/admin/login/')
