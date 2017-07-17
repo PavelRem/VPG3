@@ -39,6 +39,7 @@ class Team(models.Model):
     fb = models.CharField(max_length=100)
     descrip = models.TextField()
     img = models.ImageField(upload_to='team/')
+    number = models.IntegerField(default=0)
 
     @property
     def photo_url(self):

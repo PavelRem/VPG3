@@ -337,7 +337,7 @@ def reference_delete(request, id):
 
 @login_required(login_url='/admin/login/')
 def team(request):
-    return render(request, 'team.html',  {'team': Team.objects.all()})
+    return render(request, 'team.html',  {'team': Team.objects.order_by('number').all()})
 
 @login_required(login_url='/admin/login/')
 def team_add(request):
@@ -346,6 +346,7 @@ def team_add(request):
         obj.name = request.POST.get('name', '')
         obj.descrip = request.POST.get('descrip', '')
         obj.fb = request.POST.get('fb', '')
+        obj.number = request.POST.get('num', '')
         obj.img = request.FILES.get('photo', '')
         obj.save()
         return redirect('/admin/team/')
@@ -359,6 +360,7 @@ def team_change(request, id):
         obj.name = request.POST.get('name', '')
         obj.descrip = request.POST.get('descrip', '')
         obj.fb = request.POST.get('fb', '')
+        obj.number = request.POST.get('num', '')
         if request.FILES.get('photo', ''):
             obj.img = request.FILES.get('photo', '')
         obj.save()

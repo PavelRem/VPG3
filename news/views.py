@@ -15,7 +15,7 @@ def index(request):
     return redirect('/news/')
 
 def teammembers(request):
-    return render(request, 'teammembers.html',  {'team': Team.objects.all(), 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0] })
+    return render(request, 'teammembers.html',  {'team': Team.objects.order_by('number').all(), 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0] })
 
 def aboutus(request):
     return render(request, 'aboutus.html',  {'aboutus': Aboutus.objects.all()[0], 'partners': Partners.objects.all(), 'contacts':Contacts.objects.all()[0]})

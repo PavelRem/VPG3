@@ -38,6 +38,8 @@
         <input type="text" class="form-control" required name="name" id="name"/>
         <label for="#fb"> Ссылка на страницу в Facebook </label>
         <input type="text" class="form-control" required name="fb" id="fb-inp"/>
+        <label for="#num"> Порядковый номер в списке </label>
+        <input type="text" class="form-control" required name="num" id="num"/>
         <label for="#descrip">Описание</label>
       <textarea name="descrip" id="descrip"></textarea>
       <button type="submit" id="add-member-btn"onclick="get_editor_content()" class="btn btn-default">Добавить</button>
@@ -46,7 +48,7 @@
 </div>
 
 
- 
+
  <script>
     $("#photo").change(function() {
 
